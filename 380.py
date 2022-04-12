@@ -4,8 +4,8 @@ import random
 class RandomizedSet:
 
     def __init__(self):
-        self.lis = []
-        self.dic = {}
+        self.lis = []   # 数组通过len（）用来充当字典中的值，也可以用来返回一个随机值choice()
+        self.dic = {}   # 字典实现哈希表，可以在O(1)时间内找到是否存在和删除
 
     def insert(self, val: int) -> bool:
         if val not in self.dic.keys():
@@ -17,7 +17,7 @@ class RandomizedSet:
     def remove(self, val: int) -> bool:
         if val in self.dic.keys():
             ind = self.dic[val]
-            self.lis[ind] = self.lis[-1]
+            self.lis[ind] = self.lis[-1]    # 先换位置，再pop，保证也是O(1)内删除
             self.dic[self.lis[ind]] = ind
             self.lis.pop()
             self.dic.pop(val)
